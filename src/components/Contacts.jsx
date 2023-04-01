@@ -6,8 +6,10 @@ export class Contacts extends Component {
       <div>
         <h1>{this.props.title}</h1>
         <ul>
-          {this.props.contacts.map(({ name, id }) => (
-            <li key={id}>{name}</li>
+          {this.props.contacts.map(({ name, number, id }) => (
+            <li key={id}>
+              {name}: {number}
+            </li>
           ))}
         </ul>
       </div>

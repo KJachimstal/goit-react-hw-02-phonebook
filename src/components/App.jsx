@@ -12,9 +12,11 @@ export class App extends Component {
   handleSubmit = event => {
     event.preventDefault();
     const name = event.target.name.value;
+    const number = event.target.number.value;
     const id = nanoid();
     this.updateState({
       name,
+      number,
       id,
     });
   };
@@ -26,7 +28,6 @@ export class App extends Component {
   };
 
   render() {
-    console.log(this.state.contacts);
     return (
       <div
         style={{

@@ -16,6 +16,18 @@ export class Form extends Component {
             className="form-input"
           />
         </label>
+        <label htmlFor="number" className="form-label">
+          Number
+          <input
+            type="tel"
+            name="number"
+            pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
+            title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
+            required
+            id="number"
+            className="form-input"
+          />
+        </label>
         <button type="submit" className="form-button">
           Add contact
         </button>
