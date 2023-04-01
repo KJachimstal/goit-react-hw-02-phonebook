@@ -22,7 +22,7 @@ export class App extends Component {
     const number = event.target.number.value;
     const id = nanoid();
 
-    if (this.searchContacts(name).length != 0) {
+    if (this.searchContacts(name).length !== 0) {
       alert(`${name} is already in contacts.`);
     } else {
       this.updateState({
@@ -31,6 +31,19 @@ export class App extends Component {
         id,
       });
     }
+  };
+
+  handleDelete = id => {
+    const results = this.state.contacts.filter(contact => {
+      if (contact.id !== id) {
+        return contact;
+      }
+      return 0;
+    });
+
+    this.setState({
+      contacts: results,
+    });
   };
 
   searchContacts = data => {
@@ -76,7 +89,10 @@ export class App extends Component {
             filter={this.state.filter}
             handleChange={this.handleChange}
           />
-          <Contacts contacts={this.searchContacts(this.state.filter)} />
+          <Contacts
+            contacts={this.searchContacts(this.state.filter)}
+            handleDelete={this.handleDelete}
+          />
         </Section>
       </div>
     );

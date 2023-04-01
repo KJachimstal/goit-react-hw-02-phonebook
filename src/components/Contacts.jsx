@@ -6,7 +6,13 @@ export class Contacts extends Component {
       <ul>
         {this.props.contacts.map(({ name, number, id }) => (
           <li key={id}>
-            {name}: {number}
+            {name}: {number}{' '}
+            <button
+              type="submit"
+              onClick={this.props.handleDelete.bind(this, id)}
+            >
+              Delete
+            </button>
           </li>
         ))}
       </ul>
