@@ -21,11 +21,16 @@ export class App extends Component {
     const name = event.target.name.value;
     const number = event.target.number.value;
     const id = nanoid();
-    this.updateState({
-      name,
-      number,
-      id,
-    });
+
+    if (this.searchContacts(name).length != 0) {
+      alert(`${name} is already in contacts.`);
+    } else {
+      this.updateState({
+        name,
+        number,
+        id,
+      });
+    }
   };
 
   searchContacts = data => {
