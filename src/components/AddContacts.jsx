@@ -1,6 +1,6 @@
 import { Component } from 'react';
 
-export class Form extends Component {
+export class AddContacts extends Component {
   render() {
     return (
       <form onSubmit={this.props.handleSubmit} className="comtainer">

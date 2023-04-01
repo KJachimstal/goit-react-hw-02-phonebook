@@ -1,6 +1,6 @@
 import { Component } from 'react';
 import { Section } from './Section';
-import { Form } from './Form';
+import { AddContacts } from './AddContacts';
 import { Contacts } from './Contacts';
 import { FindContacts } from './FindContacts';
 import { nanoid } from 'nanoid';
@@ -82,7 +82,7 @@ export class App extends Component {
         }}
       >
         <Section title="Phonebook">
-          <Form handleSubmit={this.handleSubmit} />
+          <AddContacts handleSubmit={this.handleSubmit} />
         </Section>
         <Section title="Contacts">
           <FindContacts
