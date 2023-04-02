@@ -10,10 +10,7 @@ export class Contacts extends Component {
           {this.props.contacts.map(({ name, number, id }) => (
             <li key={id}>
               {name}: {number}{' '}
-              <button
-                type="submit"
-                onClick={this.props.handleDelete.bind(this, id)}
-              >
+              <button type="submit" onClick={() => this.props.handleDelete(id)}>
                 Delete
               </button>
             </li>

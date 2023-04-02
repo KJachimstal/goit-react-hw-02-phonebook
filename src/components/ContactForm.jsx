@@ -1,7 +1,9 @@
 import { Component } from 'react';
 
-export class AddContacts extends Component {
+export class ContactForm extends Component {
   render() {
+    const { nameValue } = this.props.name;
+    const { numberValue } = this.props.number;
     return (
       <form onSubmit={this.props.handleSubmit} className="comtainer">
         <label htmlFor="name" className="form-label">
@@ -14,6 +16,8 @@ export class AddContacts extends Component {
             required
             id="name"
             className="form-input"
+            value={nameValue}
+            onChange={this.props.handleChange}
           />
         </label>
         <label htmlFor="number" className="form-label">
@@ -26,6 +30,8 @@ export class AddContacts extends Component {
             required
             id="number"
             className="form-input"
+            value={numberValue}
+            onChange={this.props.handleChange}
           />
         </label>
         <button type="submit" className="form-button">

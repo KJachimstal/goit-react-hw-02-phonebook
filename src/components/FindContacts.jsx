@@ -10,6 +10,7 @@ export class FindContacts extends Component {
           className="form-input"
           type="text"
           id="find"
+          name="filter"
           value={inputValue}
           onChange={this.props.handleChange}
         />

@@ -1,6 +1,6 @@
 import { Component } from 'react';
 import { Section } from './Section';
-import { AddContacts } from './AddContacts';
+import { ContactForm } from './ContactForm';
 import { Contacts } from './Contacts';
 import { FindContacts } from './FindContacts';
 import { nanoid } from 'nanoid';
@@ -14,55 +14,45 @@ export class App extends Component {
     ],
     filter: '',
     name: '',
+    number: '',
   };
 
   handleSubmit = event => {
     event.preventDefault();
-    const name = event.target.name.value;
-    const number = event.target.number.value;
+    const { name, number } = this.state;
     const id = nanoid();
 
     if (this.searchContacts(name).length !== 0) {
       alert(`${name} is already in contacts.`);
     } else {
-      this.updateState({
-        name,
-        number,
-        id,
-      });
+      this.addContact({ name, number, id });
     }
   };
 
   handleDelete = id => {
-    const results = this.state.contacts.filter(contact => {
-      if (contact.id !== id) {
-        return contact;
-      }
-      return 0;
-    });
-
     this.setState({
-      contacts: results,
+      contacts: this.state.contacts.filter(contact => contact.id !== id),
     });
   };
 
   searchContacts = data => {
-    return this.state.contacts.filter(contact => {
-      if (contact.name.toLowerCase().includes(data.toLowerCase())) {
-        return contact;
-      }
-      return 0;
-    });
+    return this.state.contacts.filter(({ name }) =>
+      name.toLowerCase().includes(data.toLowerCase())
+    );
   };
 
   handleChange = event => {
     this.setState({
-      filter: event.target.value,
+      [event.target.name]: event.target.value,
     });
-    this.searchContacts(this.state.filter);
   };
 
-  updateState = data => {
+  handleFilterChange = event => {
+    this.handleChange(event);
+    this.searchContacts(event.target.value);
+  };
+
+  addContact = data => {
     this.setState(state => ({
       contacts: [...state.contacts, data],
     }));
@@ -82,12 +72,17 @@ export class App extends Component {
         }}
       >
         <Section title="Phonebook">
-          <AddContacts handleSubmit={this.handleSubmit} />
+          <ContactForm
+            handleSubmit={this.handleSubmit}
+            name={this.state.name}
+            number={this.state.number}
+            handleChange={this.handleChange}
+          />
         </Section>
         <Section title="Contacts">
           <FindContacts
             filter={this.state.filter}
-            handleChange={this.handleChange}
+            handleChange={this.handleFilterChange}
           />
           <Contacts
             contacts={this.searchContacts(this.state.filter)}
