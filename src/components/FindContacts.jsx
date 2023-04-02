@@ -1,4 +1,5 @@
 import { Component } from 'react';
+import PropTypes from 'prop-types';
 
 export class FindContacts extends Component {
   render() {
@@ -18,3 +19,8 @@ export class FindContacts extends Component {
     );
   }
 }
+
+FindContacts.propTypes = {
+  handleChange: PropTypes.func.isRequired,
+  filter: PropTypes.string.isRequired,
+};
